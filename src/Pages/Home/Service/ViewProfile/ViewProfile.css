@@ -1,0 +1,11 @@
+.dr-name{
+    background-color: #014a7d;
+    border-radius: 5px;
+    padding: 7px;
+    width:250px;
+    
+}
+.dr-img{
+    border: 1px solid  #014a7d ;
+    border-radius: 5px;
+}

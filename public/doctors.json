@@ -1,0 +1,66 @@
+[
+    {
+        "id": 1,
+        "name": "Tasnim Jara",
+        "qualification": "MBBS (Dhaka), FCPS (Med), MD (Neurology), PhD (India),",
+        "expertise": "Medicine",
+        "rating": 5,
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrO1ej0r3T646xFoI1w3JseBT9fd5uS0SD35t0K-aIOfEOH7B7P3sDgipbKc9fj7X8YeQ&usqp=CAU"
+    },
+    {
+        "id": 2,
+        "name": " Dr. M. A. Mannan",
+        "qualification": " MBBS, FRCP ",
+        "expertise": "Eye Speciliest",
+        "rating": 5,
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0cNd6qe--Xndd_Fz4Y_lWapSmNSGCkzR8P3WtarTCaGzH2y3wHS50JLe0Fu0RlI84y2U&usqp=CAU"
+    },
+    {
+        "id": 3,
+        "name": "Dr. Md. Amirul",
+        "qualification": " MBBS, FCPS, FRCP ( Glasgow )",
+        "expertise": " Gastrologist",
+        "rating": 5,
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYxul4-59MfAZ9kKJ5l14cGvDFqaWjtLqXSxjS4c4i1A7cJLf0I_CJKgr22BcgOi2dVho&usqp=CAU"
+    },
+    {
+        "id": 4,
+        "name": " Dr. Md. Ashraf Ali",
+        "qualification": "Senior Consultant, Department of Neurology",
+        "expertise": "Medicine",
+        "rating": 5,
+        "img": "https://www.bdspecializedhospital.com/storage/app/public/media/1557718123.jpg"
+    },
+    {
+        "id": 5,
+        "name": " Dr. Md. Mahbubur ",
+        "qualification": " MBBS, FCPS (Medicine), MD (Neurology)",
+        "expertise": "Neuromedicine",
+        "rating": 5,
+        "img": "https://doctoryouneed.org/wp-content/uploads/2020/01/1570704589-300x300.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Dr. Syed Wahidur ",
+        "qualification": "MBBS, FCPS (Medicine)",
+        "expertise": "Medicine",
+        "rating": 5,
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWF-obnhhm3ObNLlIk8uFZ-jdDrvpRE3aOI21dWr4PPj6j40BvCc_BrqQToHQbx8HyP1s&usqp=CAU"
+    },
+    {
+        "id": 7,
+        "name": "Dr. Anisa Jahan",
+        "qualification": " DCH, FCPS Fellow Neonatal Neurology",
+        "expertise": "Liver",
+        "rating": 5,
+        "img": "https://assets.lybrate.com/img/documents/doctor/dp/7c8538283a716cace44a39f3d0157f92/Ear-Nose-Throat-ENT--PayalChitranshi-Hyderabad-ce6dc1"
+    },
+    {
+        "id": 8,
+        "name": "Maliha Tabassum",
+        "qualification": " MBBS, FCPS (MEDICINE), FRCP (GLASGOW)",
+        "expertise": "NEUROLOGY",
+        "rating": 5,
+        "img": "https://lasertreat.com.bd/public/images/doctors/Nutritionist-Ms.-Salma-Sumi.jpeg"
+    }
+]
