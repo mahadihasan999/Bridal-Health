@@ -7,9 +7,10 @@ import Home from './Pages/Home/Home/Home';
 import AuthProvider from './contexts/AuthProvider';
 import Footer from './Pages/Shared/Footer/Footer';
 import ViewProfile from './Pages/Home/Service/ViewProfile/ViewProfile';
-import Service from './Pages/Home/Service/Service';
-import AboutUs from './Pages/Home/AboutUs/AboutUs';
-
+import NotFound from './Pages/NotFound/NotFound';
+import Login from './Pages/Login/Login/Login';
+import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
+import Booking from './Pages/Booking/Booking';
 function App() {
   return (
     <div >
@@ -23,14 +24,17 @@ function App() {
             <Route exact path="/home">
               <Home></Home>
             </Route>
-            <Route exact path="/service">
-              <Service></Service>
-            </Route>
-            <Route exact path="/about">
-              <AboutUs></AboutUs>
+            <Route path="/login">
+              <Login> </Login>
             </Route>
             <Route exact path="/viewProfile/:serviceId" >
               <ViewProfile></ViewProfile>
+            </Route>
+            <PrivateRoute path="/booking">
+              <Booking></Booking>
+            </PrivateRoute>
+            <Route path="*">
+              <NotFound></NotFound>
             </Route>
           </Switch>
           <Footer></Footer>

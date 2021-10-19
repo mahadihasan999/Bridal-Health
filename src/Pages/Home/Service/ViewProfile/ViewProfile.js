@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import "./ViewProfile.css"
 import img from "../../../Images/doc1.jpg"
 import { Link } from 'react-router-dom';
 const ViewProfile = () => {
-    const { serviceId } = useParams()
+    let { serviceId } = useParams()
+
+    // const [doctoDetails, setDoctorDetails] = useState([])
+    // const [singleDetails, setSingleDetails] = useState({})
+
+    // useEffect(() => {
+    //     fetch(`/doctor.json`)
+    //         .then(res => res.json())
+    //         .then(data => console.log(data.doc))
+
+    // }, [])
+
+    // useEffect(() => {
+    //     const foundData = doctoDetails.find()
+
+
+    // }, [doctoDetails])
+
     return (
         <section className="mt-5">
             <div className="container">

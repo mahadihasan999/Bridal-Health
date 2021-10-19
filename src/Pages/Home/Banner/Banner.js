@@ -7,45 +7,44 @@ import "./Banner.css"
 const Banner = () => {
     return (
         <section>
-            <div className="container">
-                <Carousel>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src={image3}
-                            alt="First slide"
-                        />
+            <Carousel>
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={image3}
+                        alt="First slide"
+                    />
 
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src={image2}
-                            alt="Second slide"
-                        />
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={image2}
+                        alt="Second slide"
+                    />
 
-                        <Carousel.Caption>
+                    <Carousel.Caption>
 
-                            <p className="text-dark">Improve your and loved ones' health and
-                                wellbeing, without having to queue or travel.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src={image1}
-                            alt="Third slide"
-                        />
+                        <p className="text-dark">Improve your and loved ones' health and
+                            wellbeing, without having to queue or travel.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={image1}
+                        alt="Third slide"
+                    />
 
-                        <Carousel.Caption>
+                    <Carousel.Caption>
 
-                            <p className="text-dark">Access your past consultations and prescriptions
-                                at any time, and even get your medicine
-                                delivered.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                </Carousel>
-            </div>
+                        <p className="text-dark">Access your past consultations and prescriptions
+                            at any time, and even get your medicine
+                            delivered.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+            </Carousel>
+
         </section>
     );
 };
