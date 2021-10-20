@@ -32,6 +32,7 @@ const useFirebase = () => {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(true);
 
+
     // clear error
     useEffect(() => {
         setTimeout(() => {
@@ -53,11 +54,15 @@ const useFirebase = () => {
     function signInWithFacebook() {
         return signInWithPopup(auth, fbProvider);
     }
+
+
     // Email sign in
     function signInWithEmail(e) {
         e.preventDefault();
         return signInWithEmailAndPassword(auth, email, password);
     }
+
+
     // set name and profile image url
     function setNameAndImage() {
         updateProfile(auth.currentUser, {
@@ -115,7 +120,6 @@ const useFirebase = () => {
     // sign up with email password
     function singUp(e) {
         e.preventDefault();
-
         createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 setNameAndImage();

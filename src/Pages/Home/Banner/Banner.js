@@ -5,7 +5,7 @@ import image3 from "../../Images/3.jpg"
 import "./Banner.css"
 const Banner = () => {
     return (
-        <section>
+        <section className="banner-section">
             <Carousel>
                 <Carousel.Item>
                     <img

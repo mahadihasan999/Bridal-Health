@@ -9,6 +9,7 @@ const Header = () => {
     const { AllContexts } = useAuth();
     const { user, logOut } = AllContexts;
     const { displayName, photoURL, email } = user;
+    console.log(user);
     return (
         <div className="">
             <Navbar className="nav  bg-light  " expand="lg" fixed="top" >
@@ -37,9 +38,7 @@ const Header = () => {
                                 About
                             </Nav.Link>
 
-                            <Nav.Link as={NavLink} to="/contact" className="logo1 fw-bold">
-                                Contact
-                            </Nav.Link>
+
 
 
 
@@ -55,8 +54,10 @@ const Header = () => {
                                     </Nav.Link>
                                 </>
                             ) : (
+
                                 <NavDropdown
                                     title={
+
                                         <img
                                             style={{
                                                 width: "45px",
@@ -75,6 +76,7 @@ const Header = () => {
                                         </button>
                                     </div>
                                 </NavDropdown>
+
                             )}
                         </Nav>
                     </Navbar.Collapse>

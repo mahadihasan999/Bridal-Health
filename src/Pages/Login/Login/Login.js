@@ -1,9 +1,9 @@
 import React from "react";
 import { Col, Form, FormControl, InputGroup, Row } from "react-bootstrap";
+import useAuth from "../../../hooks/useAuth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useLocation, useHistory } from "react-router-dom";
-import useAuth from "../../../hooks/useAuth";
 import google from "../../Images/google.png";
 import facebook from "../../Images/facebook.png";
 import github from "../../Images/github.png";
@@ -11,11 +11,8 @@ import github from "../../Images/github.png";
 const Login = () => {
     const { AllContexts } = useAuth();
     const history = useHistory();
-
     const location = useLocation();
     const redirect = location?.state?.from || "/home";
-
-
     const {
         getEmail,
         getPassword,
@@ -39,7 +36,6 @@ const Login = () => {
                         signInWithEmail()
                             .then((result) => {
                                 setUser(result.user);
-                                console.log(result.user);
                                 history.push(redirect);
                             })
                             .catch((err) => {
@@ -92,7 +88,7 @@ const Login = () => {
                 </Form>
             </div>
             <p className="mt-2">
-                <NavLink className="text-decoration-none" to="/signup">
+                <NavLink className="text-decoration-none" to="/register">
                     Need an Account? Please Sign up!
                 </NavLink>
                 <br />

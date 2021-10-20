@@ -5,7 +5,7 @@ const UrgentCare = () => {
         <div>
             <section className="mt-5 contact-section">
                 <div className="container">
-                    <h2 className="text-center text-light contact-us">Booking Now</h2>
+                    <h2 className="text-center text-light contact-us">Urgent Care</h2>
                     <form className="form">
                         <div class="form-group">
                             <label for="exampleFormControlInput1"></label>
