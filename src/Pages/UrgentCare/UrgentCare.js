@@ -1,13 +1,12 @@
 import React from 'react';
-import contact from "../../Pages/Images/contact.png"
-import "./ContactUs.css"
-const ContactUs = () => {
+
+const UrgentCare = () => {
     return (
-        <section className="mt-5 contact-section">
-            <div className="container">
-                <h2 className="text-center text-light contact-us">Contact Us</h2>
-                <div className="contact">
-                    <div className="form">
+        <div>
+            <section className="mt-5 contact-section">
+                <div className="container">
+                    <h2 className="text-center text-light contact-us">Booking Now</h2>
+                    <form className="form">
                         <div class="form-group">
                             <label for="exampleFormControlInput1"></label>
                             <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Your Name" />
@@ -25,20 +24,16 @@ const ContactUs = () => {
                             <label for="exampleFormControlTextarea1"></label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Your Massage"></textarea>
                         </div>
-                        <button className="booking-btn px-3 mt-2">Send</button>
-                    </div>
+                        <button className="new-btn px-3 mt-2">Booking</button>
+                    </form>
 
-                    <div className="contact-img">
-                        <img src={contact} alt="" />
+                    <div>
+
                     </div>
                 </div>
-
-                <div>
-
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
     );
 };
 
-export default ContactUs;
+export default UrgentCare;

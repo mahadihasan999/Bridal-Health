@@ -9,7 +9,7 @@ const Home = () => {
     return (
         <div id="home">
             <Banner></Banner>
-            <Services path="service"></Services>
+            <Services></Services>
             <WhyChooseUs></WhyChooseUs>
             <AboutUs></AboutUs>
             <ContactUs></ContactUs>

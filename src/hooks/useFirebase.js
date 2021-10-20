@@ -1,158 +1,167 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, updateProfile, signOut, onAuthStateChanged } from "firebase/auth";
-import { useState, useEffect } from 'react';
-import initializeAuthentication from './../Pages/Login/Firebase/firebase.init';
+import { useEffect, useState } from "react";
+import {
+    sendEmailVerification,
+    updateProfile,
+    createUserWithEmailAndPassword,
+    FacebookAuthProvider,
+    GithubAuthProvider,
+    signOut,
+    getAuth,
+    onAuthStateChanged,
+    signInWithPopup,
+    GoogleAuthProvider,
+    signInWithEmailAndPassword,
+    sendPasswordResetEmail,
+} from "firebase/auth";
+import firebaseInitialization from "../Pages/Login/Firebase/firebase.init"
+firebaseInitialization();
 
-initializeAuthentication();
+// Providers
+const googleProvider = new GoogleAuthProvider();
+const gitHubProvider = new GithubAuthProvider();
+const fbProvider = new FacebookAuthProvider();
+
+const auth = getAuth();
 
 const useFirebase = () => {
     const [user, setUser] = useState({});
-    const [isLoading, setIsLoading] = useState(true);
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const [isLogin, setIsLogin] = useState(false);
+    const [error, setError] = useState("");
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [photo, setPhoto] = useState("");
+    const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(true);
 
-    const auth = getAuth();
-
-    const signInUsingGoogle = () => {
-        setIsLoading(true);
-        const googleProvider = new GoogleAuthProvider();
-
-        signInWithPopup(auth, googleProvider)
-            .then(result => {
-                setUser(result.user);
-            })
-            .finally(() => setIsLoading(false));
-    }
-
-    //Email and password login
-    const toggleLogin = e => {
-        setIsLogin(e.target.checked)
-    }
-
-    const handleNameChange = e => {
-        setName(e.target.value);
-    }
-    const handleEmailChange = e => {
-        setEmail(e.target.value);
-    }
-
-    const handlePasswordChange = e => {
-        setPassword(e.target.value)
-    }
-
-
-    //handle Registration
-
-    const handleRegistration = e => {
-        e.preventDefault();
-        console.log(email, password);
-        if (password.length < 6) {
-            setError('Password Must be at least 6 characters long.')
-            return;
-        }
-        if (!/(?=.*[A-Z].*[A-Z])/.test(password)) {
-            setError('Password Must contain 2 upper case');
-            return;
-        }
-
-        if (isLogin) {
-            processLogin(email, password);
-        }
-        else {
-            registerNewUser(email, password);
-        }
-
-    }
-
-
-    //Login Process
-
-    const processLogin = (email, password) => {
-        signInWithEmailAndPassword(auth, email, password)
-            .then(result => {
-                const user = result.user;
-                console.log(user);
-                setError('');
-            })
-            .catch(error => {
-                setError(error.message);
-            })
-    }
-
-    const registerNewUser = (email, password) => {
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(result => {
-                const user = result.user;
-                console.log(user);
-                setError('');
-                verifyEmail();
-                setUserName();
-                handleResetPassword();
-            })
-            .catch(error => {
-                setError(error.message);
-            })
-    }
-
-    const setUserName = () => {
-        updateProfile(auth.currentUser, { displayName: name })
-            .then(result => { })
-    }
-
-    const verifyEmail = () => {
-        sendEmailVerification(auth.currentUser)
-            .then(result => {
-                console.log(result);
-            })
-    }
-
-    const handleResetPassword = () => {
-        sendPasswordResetEmail(auth, email)
-            .then(result => {
-
-            })
-
-        return {
-            name,
-            handleRegistration,
-            handleNameChange,
-            handleEmailChange,
-            handlePasswordChange,
-            toggleLogin,
-            handleResetPassword
-
-        }
-    }
-
-    // observe user state change
+    // clear error
     useEffect(() => {
-        const unsubscribed = onAuthStateChanged(auth, user => {
-            if (user) {
-                setUser(user);
-            }
-            else {
-                setUser({})
-            }
-            setIsLoading(false);
-        });
-        return () => unsubscribed;
-    }, [])
+        setTimeout(() => {
+            setError("");
+        }, 5000);
+    }, [error]);
 
-    const logOut = () => {
-        setIsLoading(true);
-        signOut(auth)
+    // google sign in
+    function signInWithGoogle() {
+        return signInWithPopup(auth, googleProvider);
+    }
+
+    // gitHub sign in
+    function signInWithGithub() {
+        return signInWithPopup(auth, gitHubProvider);
+    }
+
+    // facebook sign in
+    function signInWithFacebook() {
+        return signInWithPopup(auth, fbProvider);
+    }
+    // Email sign in
+    function signInWithEmail(e) {
+        e.preventDefault();
+        return signInWithEmailAndPassword(auth, email, password);
+    }
+    // set name and profile image url
+    function setNameAndImage() {
+        updateProfile(auth.currentUser, {
+            displayName: name,
+            photoURL: photo,
+        })
             .then(() => { })
-            .finally(() => setIsLoading(false));
+            .catch((error) => {
+                setError(error.message);
+            });
+    }
+
+    function emailVerify() {
+        sendEmailVerification(auth.currentUser).then(() => {
+            alert(`An Verification mail has been set to ${email}`);
+        });
+    }
+
+    // Get the currently signed-in user
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (signedInUser) => {
+            if (signedInUser) {
+                setUser(signedInUser);
+            } else {
+                setUser({});
+            }
+            setLoading(false);
+        });
+        return () => unsubscribe;
+    }, []);
+
+    // sign out
+    function logOut() {
+        signOut(auth)
+            .then((res) => {
+                setUser({});
+            })
+            .catch((error) => {
+                setError(error.message);
+            });
+    }
+
+    // reset password
+    function passwordReset(e) {
+        e.preventDefault();
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+                alert("password reset email has been sent");
+            })
+            .catch((err) => {
+                setError(err.message);
+            });
+    }
+
+    // sign up with email password
+    function singUp(e) {
+        e.preventDefault();
+
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((result) => {
+                setNameAndImage();
+                emailVerify();
+                alert("user has been created");
+            })
+            .catch((err) => {
+                setError(err.message);
+            });
+    }
+    // get name
+    function getName(e) {
+        setName(e?.target?.value);
+    }
+
+    // get Email
+    function getEmail(e) {
+        setEmail(e?.target?.value);
+    }
+    // Get password
+    function getPassword(e) {
+        setPassword(e?.target?.value);
+    }
+    // Get photoUrl
+    function getPhoto(e) {
+        setPhoto(e?.target?.value);
     }
 
     return {
+        signInWithEmail,
+        signInWithFacebook,
+        signInWithGithub,
+        logOut,
+        signInWithGoogle,
         user,
-        isLoading,
-        signInUsingGoogle,
-        logOut
-    }
-}
+        setUser,
+        error,
+        setError,
+        getPassword,
+        getEmail,
+        singUp,
+        getPhoto,
+        getName,
+        passwordReset,
+        loading,
+    };
+};
 
 export default useFirebase;

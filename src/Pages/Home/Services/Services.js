@@ -12,11 +12,11 @@ const Services = () => {
 
     return (
         <section>
-            <div className="container" id="services">
+            <div className="container py-5">
                 <div className="text-primary text-center mt-5">
-                    <p> Recent Products</p>
-                    <h1>Just What the doctor ordered</h1>
-                    <p> Private Patients, International organizations and corporate feel safe and cofrtabel in establishing realtionship</p>
+
+                    <h1 className="logo1">Just What the doctor ordered</h1>
+                    <p className="logo1"> Private Patients, International organizations and corporate feel safe and cofrtabel in establishing realtionship</p>
                 </div>
                 <div className="service-container">
                     {

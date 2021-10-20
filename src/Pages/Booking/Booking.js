@@ -1,11 +1,11 @@
 import React from 'react';
-import "./Booking.css"
+
 const Booking = () => {
     return (
         <div>
             <section className="mt-5 contact-section">
                 <div className="container">
-                    <h2 className="text-center text-light contact-us">Contact Us</h2>
+                    <h2 className="text-center text-light contact-us">Booking Now</h2>
                     <form className="form">
                         <div class="form-group">
                             <label for="exampleFormControlInput1"></label>
@@ -24,7 +24,7 @@ const Booking = () => {
                             <label for="exampleFormControlTextarea1"></label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Your Massage"></textarea>
                         </div>
-                        <button className="booking-btn px-3 mt-2">Send</button>
+                        <button className="new-btn px-3 mt-2">Booking</button>
                     </form>
 
                     <div>

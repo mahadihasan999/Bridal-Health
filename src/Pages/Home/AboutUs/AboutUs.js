@@ -5,18 +5,18 @@ import "./AboutUs.css"
 const AboutUs = () => {
     return (
         <section className=" mt-5">
-            <div className="container">
+            <div className="container py-3">
                 <div>
                     <h2 className="text-center">About us</h2>
-                    <div className="about-photo d-flex">
-                        <div>
+                    <hr />
+                    <div className="about-photo">
+                        <div className="">
                             <img src={img1} alt="" />
                             <li> Imporve the Health and Wellbeing of the populations we serve </li>
                             <li>Provive accesible and afforadable health service trhough advanced technology</li>
                         </div>
-                        <div>
-                            <img className=" mt-3" src={img2} alt="" />
-
+                        <div className="">
+                            <img src={img2} alt="" />
                             <li>Be The champion of the health service inthe selected developing markets</li>
                             <li>Focus on both high-volume medical assements and the biggest health issues</li>
                         </div>

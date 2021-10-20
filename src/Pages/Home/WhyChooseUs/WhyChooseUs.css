@@ -4,9 +4,8 @@
     margin-top: 50px;
     height: 100vh;
 }
-.d-flex{
-    align-items: center;
-    justify-content: center;
+.choose-us-container{
+padding-top:  20px;
 
 }
 
@@ -17,6 +16,8 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
+    justify-content: center;
+    align-items: center;
 }
 .element{
     background: #014a7d;
@@ -25,4 +26,16 @@
     align-items: center;
     justify-content: center;
      
+}
+
+@media only screen and (max-width:688px) {
+    .reason{
+        grid-template-columns: repeat(1, 1fr);
+ }
+}
+@media only screen and (min-width:689px) and (max-width: 991px){
+          .img{
+           display: none; 
+           margin: 0 auto;
+    }
 }

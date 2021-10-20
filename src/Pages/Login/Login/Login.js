@@ -1,87 +1,156 @@
-import React from 'react';
-import useAuth from './../../../hooks/useAuth';
-import "./Login.css"
+import React from "react";
+import { Col, Form, FormControl, InputGroup, Row } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
+import { NavLink, useLocation, useHistory } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import google from "../../Images/google.png";
+import facebook from "../../Images/facebook.png";
+import github from "../../Images/github.png";
+
 const Login = () => {
-    const { signInUsingGoogle, handleRegistration, isLogin, handleNameChange, handleEmailChange, handlePasswordChange
-        , toggleLogin, error, handleResetPassword } = useAuth();
+    const { AllContexts } = useAuth();
+    const history = useHistory();
+
+    const location = useLocation();
+    const redirect = location?.state?.from || "/home";
+
+
+    const {
+        getEmail,
+        getPassword,
+        signInWithEmail,
+        error,
+        setUser,
+        setError,
+        signInWithGoogle,
+        signInWithGithub,
+        signInWithFacebook,
+    } = AllContexts;
+
     return (
+        <div className="text-center my-4 p-">
+            <h2>Please Login</h2>
+            <p className=" mt-2">Login with Email and Password</p>
+            <p className="text-danger text-center">{error}</p>
+            <div className="w-25 mx-auto">
+                <Form
+                    onSubmit={() => {
+                        signInWithEmail()
+                            .then((result) => {
+                                setUser(result.user);
+                                console.log(result.user);
+                                history.push(redirect);
+                            })
+                            .catch((err) => {
+                                setError(err.message);
+                            });
+                    }}
+                >
+                    <Row>
+                        <Col className="text-start">
+                            <Form.Label htmlFor="email" visuallyHidden>
+                                Your Email Address
+                            </Form.Label>
+                            <InputGroup className="mb-2">
+                                <InputGroup.Text>
+                                    <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
+                                </InputGroup.Text>
+                                <FormControl
+                                    onBlur={getEmail}
+                                    type="email"
+                                    autoComplete="current-email"
+                                    id="email"
+                                    placeholder="Enter your email address"
+                                />
+                            </InputGroup>
+                        </Col>
+                    </Row>
+                    <Row className="mt-2">
+                        <Col className="text-start">
+                            <Form.Label htmlFor="password" visuallyHidden>
+                                Your Password
+                            </Form.Label>
+                            <InputGroup className="mb-2">
+                                <InputGroup.Text>
+                                    <FontAwesomeIcon icon={faLock}></FontAwesomeIcon>
+                                </InputGroup.Text>
+                                <FormControl
+                                    onBlur={getPassword}
+                                    type="password"
+                                    autoComplete="current-password"
+                                    id="password"
+                                    placeholder="Enter your password"
+                                />
+                            </InputGroup>
+                        </Col>
+                    </Row>
 
-        <body>
-            <div className="container">
-                <div className="row">
-                    <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                        <div className="card border-0 shadow rounded-3 my-5">
-                            <div className="card-body p-4 p-sm-5">
-                                <h5 className="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
-
-                                <form onSubmit={handleRegistration}>
-
-                                    <h3 className="card-title text-center mb-5 fw-light fs-5">Please {isLogin ? 'Login' : 'Register'}</h3>
-                                    {!isLogin && <div className="">
-
-                                        <div className="form-floating mb-3">
-                                            <input onBlur={handleNameChange} type="email" className="form-control" id="floatingInput" placeholder="name@example.com" />
-                                            <label for="floatingInput">Name</label>
-                                        </div>
-
-                                    </div>}
-                                    <div className="">
-
-                                        <div className="form-floating mb-3">
-                                            <input onBlur={handleEmailChange} type="password" className="form-control" id="floatingPassword" placeholder="Password" />
-                                            <label for="floatingInput">Email</label>
-                                        </div>
-                                    </div>
-                                    <div className="">
-
-                                        <div className="form-floating mb-3">
-                                            <input onBlur={handlePasswordChange} type="password" className="form-control" id="floatingPassword" placeholder="Password" required />
-                                            <label for="floatingPassword">Password</label>
-                                        </div>
-                                    </div>
-
-                                    <div className="">
-                                        <div className="">
-                                            <div className="form-check">
-                                                <input onChange={toggleLogin} className="form-check-input" type="checkbox" id="gridCheck1" />
-                                                <label className="form-check-label" htmlFor="gridCheck1">
-                                                    Already Registered?
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="row mb-3 text-danger">{error}</div>
-                                    <button type="submit" className="booking-btn  text-uppercase ">
-                                        {isLogin ? 'Login' : 'Register'}
-                                    </button>
-                                    <button className="view-btn text-uppercase mx-3 " type="button" onClick={handleResetPassword}>Reset Password</button>
-                                </form>
-                                <hr />
-
-
-                                <div>
-
-                                    <div className="d-grid mb-2">
-                                        <button onClick={signInUsingGoogle} className="btn btn-google btn-login text-uppercase fw-bold" >
-                                            Sign in with Google
-                                        </button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <button type="submit" className="btn btn-primary mt-2 w-100">
+                        Login
+                    </button>
+                </Form>
             </div>
-        </body>
-
-
-
-
-
+            <p className="mt-2">
+                <NavLink className="text-decoration-none" to="/signup">
+                    Need an Account? Please Sign up!
+                </NavLink>
+                <br />
+                <NavLink className="text-decoration-none" to="/reset">
+                    Forget password? Reset!
+                </NavLink>
+            </p>
+            <p className="mt-3">Or</p>
+            <p> Login with</p>
+            <div>
+                <button
+                    onClick={() => {
+                        signInWithGoogle()
+                            .then((result) => {
+                                setUser(result.user);
+                                history.push(redirect);
+                            })
+                            .catch((err) => {
+                                setError(err.message);
+                            });
+                    }}
+                    className="btn"
+                >
+                    <img src={google} width="46px" alt="google-icon" />
+                </button>
+                <button
+                    onClick={() => {
+                        signInWithFacebook()
+                            .then((result) => {
+                                setUser(result.user);
+                                history.push(redirect);
+                            })
+                            .catch((err) => {
+                                setError(err.message);
+                            });
+                    }}
+                    className="btn"
+                >
+                    <img width="50px" src={facebook} alt="facebook-icon" />
+                </button>
+                <button
+                    onClick={() => {
+                        signInWithGithub()
+                            .then((result) => {
+                                setUser(result.user);
+                                history.push(redirect);
+                            })
+                            .catch((err) => {
+                                setError(err.message);
+                            });
+                    }}
+                    className="btn"
+                >
+                    <img width="55px" src={github} alt="github-icon" />
+                </button>
+            </div>
+        </div>
     );
 };
 
 export default Login;
-
-
